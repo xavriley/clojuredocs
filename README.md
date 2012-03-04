@@ -5,7 +5,7 @@
 ## Dev
 
 Running `bin/symlink-git-hooks` will enable the git hooks we use on
-the clojuredocs project, such as running tests before a push.
+the clojuredocs project, such as running tests before a commit.
 
 ## License
 
