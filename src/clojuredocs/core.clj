@@ -30,7 +30,7 @@
 
 (def ClojureVar
   {:identity [:ns :name :version]
-   :collection :clojure_vars})
+   :collection :clojure-vars})
 
 (defn persist [meta omap]
   (let [cleaned-map (clean-map omap)
@@ -42,6 +42,7 @@
                           cleaned-map
                           :upsert? true
                           :return-new? true)))
+
 
 #_(count (mon/fetch (:collection ClojureVar)))
 
