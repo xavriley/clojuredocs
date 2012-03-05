@@ -1,0 +1,15 @@
+<2012-03-05 Mon 01:02>
+
+* Persistence
+Lets try backending into mongo this time.  Persistence identity around
+key fields instead of ids.  
+
+* 3rd Party Libs
+
++ Need to run clojuredocs analyzer code in 1.2.x and 1.3.x projects.
++ Jar / Github support
++ Clojars?
+
+Supported versions: Clojure 1.2 and 1.3
+
+Heroku: clone to /tmp?
