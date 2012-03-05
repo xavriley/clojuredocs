@@ -1,7 +1,10 @@
 (ns clojuredocs.core
-  (:use [clojure.pprint :only (pprint pp)])
+  (:use [clojure.pprint :only (pprint)])
   (:require [clojure.string :as str]
-            [somnium.congomongo :as mon]))
+            [somnium.congomongo :as mon])
+  (:import [java.io PushbackReader]))
+
+;; # Peristence
 
 (defn pull-identity
   "Create a map of identity keys to values. To be used to make a query
@@ -28,10 +31,6 @@
   [m]
   (->> m (map (fn [e] [(first e) (clean (second e))])) (into {})))
 
-(def ClojureVar
-  {:identity [:ns :name :version]
-   :collection :clojure-vars})
-
 (defn persist [meta omap]
   (let [cleaned-map (clean-map omap)
         ident (:identity meta)
@@ -43,41 +42,108 @@
                           :upsert? true
                           :return-new? true)))
 
+(defn git-url [{:keys [library commit-hash file src-root line]}]
+  (str "https://github.com"
+       "/" library
+       "/blob"
+       "/" commit-hash
+       "/" src-root
+       "/" file
+       "#L" line))
 
-#_(count (mon/fetch (:collection ClojureVar)))
 
-#_(mon/mongo! :db :clojuredocs)
+;; # Namespaces
 
-#_(do
-  (mon/drop-coll! (:collection ClojureVar))
-  (count (mon/fetch (:collection ClojureVar))))
+(def ^{:doc "Persistence metadata for namespaces."}
+  ClojureNamespace
+  {:identity [:name :version :library]
+   :collection :namespaces})
+
+(defn persist-ns [ns library version commit-hash]
+  (->> {:name (.getName ns)
+        :version version
+        :library library
+        :commit-hash commit-hash}
+       (merge (meta ns))
+       clean-map
+       (persist ClojureNamespace)))
 
 
-#_(defn var-persist
-  "Persist vars"
-  [ident v]
-  )
+;; # Vars
 
-#_(def cd-var {:ns (find-ns 'clojure.string)
-             :name 'trim,
-             :arglists '([s]),
-             :added "1.2",
-             :doc "Removes whitespace from both ends of string.",
-             :line 184,
-             :file "clojure/string.clj",
-             :tag java.lang.String
-             :version "1.3.0"})
+(def ^{:doc "Persistence metadata for vars."}
+  ClojureVar
+  {:identity [:ns :name :version :library]
+   :collection :vars})
 
-#_(def var-identity [:version :name :ns])
-#_(def var-coll :vars)
+(defn persist-var [var library version commit-hash]
+  (->> (meta var)
+       (merge {:library library
+               :version version
+               :commit-hash commit-hash})
+       clean-map
+       (persist ClojureNamespace)))
 
-#_(->> 'clojure.string
-     ns-publics
-     (map second)
-     (map meta)
-     (map #(var-persist [:version :name :ns] %))
-     pprint)
+;; # Files
 
+;; From clojure.contrib.find-namespaces
+
+(defn comment?
+  "Returns true if form is a (comment ...)"
+  [form]
+    (and (list? form) (= 'comment (first form))))
+
+(defn ns-decl?
+  "Returns true if form is a (ns ...) declaration."
+  [form]
+  (and (list? form) (= 'ns (first form))))
+
+(defn read-ns-decl
+  "Attempts to read a (ns ...) declaration from rdr, and returns the
+  unevaluated form.  Returns nil if read fails or if a ns declaration
+  cannot be found.  The ns declaration must be the first Clojure form
+  in the file, except for (comment ...)  forms."
+  [^PushbackReader rdr]
+  (try
+    (loop [rdr rdr]
+      (let [form (read rdr)]
+        (cond
+         (ns-decl? form) form
+         (comment? form) (recur rdr)
+         :else nil)))
+    (catch Exception e nil)))
+
+
+;;;
+
+(comment
+
+  (with-open [rdr (clojure.lang.LineNumberingPushbackReader. (java.io.FileReader. "./src/clojuredocs/core.clj"))]
+    (read-ns-decl rdr))
+  
+  (mon/mongo! :db :clojuredocs)
+  (pprint (->> 'clojure.string
+               ns-publics
+               (map second)
+               (map meta)
+               (map #(assoc %
+                       :library "clojure/clojure"
+                       :version "1.3.0"
+                       :commit-hash "1f55cc0a9df8e98c79973a1f563bb68baab7bccd"
+                       :src-root "src/clj"))
+               (map #(persist ClojureVar %))
+               (map git-url)))
+
+
+  (mon/fetch (:collection ClojureVar) :where {:library "clojure/clojure"})
+
+  (count (mon/fetch (:collection ClojureVar)))
+
+  (mon/mongo! :db :clojuredocs)
+
+  (do
+    (mon/drop-coll! (:collection ClojureVar))
+    (count (mon/fetch (:collection ClojureVar)))))
 
 
 
