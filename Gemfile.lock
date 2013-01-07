@@ -33,6 +33,7 @@ GEM
     net-ssh (2.0.23)
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
+    newrelic_rpm (3.5.4.34)
     pg (0.14.1)
     pg_search (0.2.1)
     rack (1.0.1)
@@ -65,6 +66,7 @@ DEPENDENCIES
   capistrano (= 2.5.19)
   chronic (= 0.2.3)
   flexmock (= 0.8.7)
+  newrelic_rpm
   pg
   pg_search
   rack-openid (= 1.0.3)

@@ -15,6 +15,10 @@ gem 'will_paginate', '2.3.12'
 #gem 'levenshtein', '0.2.0'
 gem 'capistrano', '2.5.19'
 
+group :production do
+  gem 'newrelic_rpm'
+end
+
 group :test do
   gem 'shoulda', '2.11.3'
   gem 'flexmock', '0.8.7'
