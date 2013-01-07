@@ -10,7 +10,7 @@ gem 'rubytree', '0.7.0'
 gem 'rdiscount', '1.6.5'
 gem 'chronic', '0.2.3'
 gem 'will_paginate', '2.3.12'
-gem 'levenshtein', '0.2.0'
+#gem 'levenshtein', '0.2.0'
 gem 'capistrano', '2.5.19'
 
 group :test do

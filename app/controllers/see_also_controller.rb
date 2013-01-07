@@ -54,7 +54,8 @@ class SeeAlsoController < ApplicationController
     
     name = q + "%"
     
-    @functions = Function.find(:all, :conditions => ['name like ? and version = ?', name, version]).sort{|a,b| Levenshtein.distance(q, a.name) <=> Levenshtein.distance(q, b.name)}.uniq
+    #@functions = Function.find(:all, :conditions => ['name like ? and version = ?', name, version]).sort{|a,b| Levenshtein.distance(q, a.name) <=> Levenshtein.distance(q, b.name)}.uniq
+    @functions = Function.find(:all, :conditions => ['name like ? and version = ?', name, version]).uniq
     
     if @functions.size > 10
       @functions = @functions[0, 10]

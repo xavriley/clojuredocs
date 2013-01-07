@@ -102,7 +102,7 @@ class MainController < ApplicationController
     begin
 
       @functions = Function.find_by_sql([sql] + res)
-      @functions = @functions.sort{|a,b| Levenshtein.distance(q, a.name) <=> Levenshtein.distance(q, b.name)}
+      #@functions = @functions.sort{|a,b| Levenshtein.distance(q, a.name) <=> Levenshtein.distance(q, b.name)}
       @functions = @functions[0..24]
 
     rescue
@@ -163,7 +163,8 @@ class MainController < ApplicationController
         out = Function.find_by_sql([sql] + res)
       end
 
-      @functions = out.sort{|a,b| Levenshtein.distance(q, a.name) <=> Levenshtein.distance(q, b.name)}
+      #@functions = out.sort{|a,b| Levenshtein.distance(q, a.name) <=> Levenshtein.distance(q, b.name)}
+      @functions = out
       render :json => @functions.map{|f| {:name => f[:name], :ns => f[:ns]}}.to_json
     end
 
@@ -300,9 +301,9 @@ class MainController < ApplicationController
 
         if @functions != nil and @functions.size > 0
           
-          @functions.sort!{|a,b| 
-            Levenshtein.distance(q, a.name) <=> Levenshtein.distance(q, b.name) 
-          }
+          #@functions.sort!{|a,b| 
+          #  Levenshtein.distance(q, a.name) <=> Levenshtein.distance(q, b.name) 
+          #}
           
           # sort clojure core & contrib higher than other libs          
           @functions.sort!{|a,b|
