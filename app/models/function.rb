@@ -20,21 +20,26 @@ class Function < ActiveRecord::Base
   acts_as_commentable
   
   #:nocov:
-  define_index do
-    # fields
-    #indexes "REPLACE(name, '-', '')", :as => :name
-    set_property :enable_star => true
-    set_property :min_prefix_len => 1
-    indexes name
-    indexes doc
-    indexes '(select libraries.name from libraries where libraries.id = (select library_id from namespaces where namespaces.id = functions.namespace_id))', :as => :library
-    indexes '(select namespaces.name from namespaces where namespaces.id = namespace_id)'
-#    indexes namespace
-#    indexes functions(:namespace, :name), :as => :ns
-    indexes version
-    
-  end
+#   define_index do
+#     # fields
+#     #indexes "REPLACE(name, '-', '')", :as => :name
+#     set_property :enable_star => true
+#     set_property :min_prefix_len => 1
+#     indexes name
+#     indexes doc
+#     indexes '(select libraries.name from libraries where libraries.id = (select library_id from namespaces where namespaces.id = functions.namespace_id))', :as => :library
+#     indexes '(select namespaces.name from namespaces where namespaces.id = namespace_id)'
+# #    indexes namespace
+# #    indexes functions(:namespace, :name), :as => :ns
+#     indexes version
+#     
+#   end
   #:nocov:
+  
+  def self.search(q, opts)
+    #:page => params[:page], :per_page => 16, :match_mode => :extended, :field_weights => {:name => 10,:doc => 1}
+    Function.all(:limit => 10)
+  end
   
   def arglists
     self.arglists_comp.split '|'

@@ -91,17 +91,18 @@ class MainController < ApplicationController
     for i in (0..q.size)
       after = q[i,q.size]
       before = q[0,i]
-      res << before + ".*" + after
+      res << before + "%" + after
     end
 
     qm = res.clone
     qm = qm.fill("?")
     
-    sql = "select * from functions where name RLIKE " + qm.join(" or name RLIKE ") + " LIMIT 100"
+    sql = "select * from functions where name LIKE " + qm.join(" or name LIKE ") + " LIMIT 100"
 
     begin
 
       @functions = Function.find_by_sql([sql] + res)
+      
       #@functions = @functions.sort{|a,b| Levenshtein.distance(q, a.name) <=> Levenshtein.distance(q, b.name)}
       @functions = @functions[0..24]
 
@@ -109,21 +110,20 @@ class MainController < ApplicationController
       @functions = []
     end
 
-    if @functions.size <= 0
-
-      if not q.match("@library")
-        q += " @library (\"Clojure Core\" | \"Clojure Contrib\")"
-      end
-
-      q = "*" + q + "*"
-
-      @functions = Function.search(q, :page => params[:page], :per_page => 16, :match_mode => :extended, :field_weights => {:name => 10,:doc => 1})
-
-      
-
-      @functions = @functions[0..24]
-      
-    end
+    # if @functions.size <= 0
+    # 
+    #   #Sphinx specific code
+    #   #if not q.match("@library")
+    #   #  q += " @library (\"Clojure Core\" | \"Clojure Contrib\")"
+    #   #end
+    # 
+    #   q = "*" + q + "*"
+    # 
+    #   @functions = Function.search(q, :page => params[:page], :per_page => 16, :match_mode => :extended, :field_weights => {:name => 10,:doc => 1})
+    #   
+    #   @functions = @functions[0..24]
+    # 
+    # end
 
     @functions = @functions.find_all { |f|
       f.library.current
