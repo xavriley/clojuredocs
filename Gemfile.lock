@@ -26,7 +26,6 @@ GEM
       rake (>= 0.8.7)
       rubyforge (>= 2.0.4)
     json_pure (1.4.6)
-    levenshtein (0.2.0)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -65,7 +64,6 @@ DEPENDENCIES
   capistrano (= 2.5.19)
   chronic (= 0.2.3)
   flexmock (= 0.8.7)
-  levenshtein (= 0.2.0)
   pg
   rack-openid (= 1.0.3)
   rails (= 2.3.5)
