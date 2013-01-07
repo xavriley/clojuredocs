@@ -33,26 +33,6 @@
 			<p>This site is entirely based off of the great work done by <a href="https://github.com/zkim">zkim</a> and all on <a href="http://clojuredocs.org/">ClojureDocs.org</a>. You can help out that project by joining the mailing list and getting involved - it's also totally open source so you can contribute using Github. It looks like they're undergoing a transition to a new iteration of the site, so it may be that the latest work is going in a new direction, but I'm sure they're happy for people to take an interest.</p>
 			</div>
 		</div>
-		<div class="grid_6 prefix_1">
-			<div class="top_contributors">
-				<h2>Top Contributors</h2>
-				<ul class="top_contributors">
-					<% @top_contributors.each do |tc| %>
-					<li>
-						<%= link_to image_tag(grav_url_for(tc[:email]), :alt => tc[:author]), :controller => 'user', :action => 'profile', :login => tc[:author] %>
-					</li>
-					<% end %>
-				</ul>
-
-				<div class="clear"></div>
-				<span class="find_functions_without_examples"><a href="/management/clojure_core">Find vars that need examples.</a></span>
-			</div>
-			<%= image_tag "curly_bracket.png", :class => "curly", :width => 355, :height => 102 %>
-			<div class="recently_updated_panel">
-				<h2>Recently Updated <a href="/feed/recent_updates" alt="All recent updates RSS feed"><%= image_tag 'browser-rss.png', :width => 20, :height => 20 %></a></h2>
-				<%= render :partial => '/recently_updated', :locals => {:recently_updated => @recently_updated}%>
-			</div>
-		</div>
 
 		<div class="grid_8">
 
