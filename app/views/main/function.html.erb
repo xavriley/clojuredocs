@@ -53,11 +53,6 @@ $(document).ready(function() {
 			<%= image_tag "arrow_down_16x16.png", :width => 16, :height => 16 %>
 		</span>
 		<ul>
-			<!-- <% if @function.stable_version %>
-						<li>
-							<%= link_to 'stable', @function.stable_version.link_opts, :class => 'stable' %>
-						</li>
-						<% end %> -->
 		<% Function.versions_of(@function).each do |f| %>
 			<% 
 				classes = []
