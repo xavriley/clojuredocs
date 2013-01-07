@@ -88,11 +88,11 @@ class MainController < ApplicationController
 
 
     res = []
-    for i in (0..q.size)
-      after = q[i,q.size]
-      before = q[0,i]
-      res << before + "%" + after
-    end
+    # for i in (0..q.size)
+    #   after = q[i,q.size]
+    #   before = q[0,i]
+    #   res << before + "?" + after
+    # end
 
     qm = res.clone
     qm = qm.fill("?")
@@ -119,9 +119,9 @@ class MainController < ApplicationController
     # 
     #   q = "*" + q + "*"
     # 
-    #   @functions = Function.search(q, :page => params[:page], :per_page => 16, :match_mode => :extended, :field_weights => {:name => 10,:doc => 1})
+       @functions = Function.search(q)
     #   
-    #   @functions = @functions[0..24]
+       @functions = @functions[0..24]
     # 
     # end
 
