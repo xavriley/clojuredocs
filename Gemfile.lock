@@ -34,6 +34,7 @@ GEM
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
     pg (0.14.1)
+    pg_search (0.2.1)
     rack (1.0.1)
     rack-openid (1.0.3)
       rack (>= 0.4)
@@ -65,6 +66,7 @@ DEPENDENCIES
   chronic (= 0.2.3)
   flexmock (= 0.8.7)
   pg
+  pg_search
   rack-openid (= 1.0.3)
   rails (= 2.3.5)
   rake (= 0.8.7)

@@ -11,6 +11,8 @@ require 'tasks/rails'
 
 require 'digest/sha1'
 
+require 'pg_search/tasks'
+
 puts ENV['RAILS_ENV']
 
 

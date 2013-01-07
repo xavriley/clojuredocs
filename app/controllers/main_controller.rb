@@ -290,12 +290,7 @@ class MainController < ApplicationController
       
       # @version (\"#{core_current_version}\" | \"#{contrib_current_version}\")
 
-      @functions = Function.search("@name #{q} @library (\"Clojure Core\" | \"Clojure Contrib\")", :field_weights => {
-        :name => 100,
-        :library => 1,
-        :ns => 1,
-        :doc => -1,
-        }, :match_mode => :extended)
+      @functions = Function.quick_search("@name #{q}")
 
         @functions.delete(nil)
 
@@ -304,26 +299,6 @@ class MainController < ApplicationController
           #@functions.sort!{|a,b| 
           #  Levenshtein.distance(q, a.name) <=> Levenshtein.distance(q, b.name) 
           #}
-          
-          # sort clojure core & contrib higher than other libs          
-          @functions.sort!{|a,b|
-            aval = 0
-            bval = 0
-
-            if a.library == "Clojure Core"
-              aval = 2
-            elsif a.library == "Clojure Contrib"
-              aval = 1
-            end
-
-            if b.library == "Clojure Core"
-              bval = 2
-            elsif b.library == "Clojure Contrib"
-              bval = 1
-            end
-
-            aval <=> bval
-          }
 
            
         end

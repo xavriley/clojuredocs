@@ -6,6 +6,7 @@ gem 'rails', '2.3.5'
 gem 'ruby-openid', '2.1.7'
 gem 'rack-openid', '1.0.3', :require => nil
 gem "pg"
+gem "pg_search"
 gem 'rubytree', '0.7.0'
 
 gem 'rdiscount', '1.6.5'

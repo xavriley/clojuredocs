@@ -1,4 +1,6 @@
 class Function < ActiveRecord::Base
+  include PgSearch
+  
   belongs_to :namespace
   
   has_many :examples
@@ -19,6 +21,14 @@ class Function < ActiveRecord::Base
   
   acts_as_commentable
   
+  pg_search_scope :search, :against => [:name, :doc, :version], :using => {
+                      :tsearch => {:prefix => true}
+                    }
+                    
+  pg_search_scope :quick_search, :against => [:name], :using => {
+                      :tsearch => {:prefix => true}
+                    }
+  
   #:nocov:
 #   define_index do
 #     # fields
@@ -35,11 +45,6 @@ class Function < ActiveRecord::Base
 #     
 #   end
   #:nocov:
-  
-  def self.search(q, opts)
-    #:page => params[:page], :per_page => 16, :match_mode => :extended, :field_weights => {:name => 10,:doc => 1}
-    Function.all(:limit => 10)
-  end
   
   def arglists
     self.arglists_comp.split '|'
