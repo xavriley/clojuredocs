@@ -3,13 +3,13 @@ class Namespace < ActiveRecord::Base
   has_many :functions
   
   #:nocov:
-  define_index do
-    # fields
-    indexes name
-    indexes libraries.name, :as => :library
-    
-    has library_id
-  end
+  #define_index do
+  #   # fields
+  #   indexes name
+  #   indexes libraries.name, :as => :library
+  #   
+  #   has library_id
+  # end
   #:nocov:
   
   def self.versions_of(ns)
