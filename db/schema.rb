@@ -13,20 +13,17 @@ ActiveRecord::Schema.define(:version => 20110926024801) do
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",                 :default => 0
-    t.string   "commentable_type", :limit => 15, :default => ""
-    t.string   "title",                          :default => ""
+    t.string   "commentable_type", :limit => 15
+    t.string   "title"
     t.text     "body"
-    t.string   "subject",                        :default => ""
-    t.integer  "user_id",                        :default => 0,  :null => false
+    t.string   "subject"
+    t.integer  "user_id",                        :default => 0, :null => false
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
-  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "example_versions", :force => true do |t|
     t.integer  "example_id"
@@ -38,8 +35,6 @@ ActiveRecord::Schema.define(:version => 20110926024801) do
     t.integer  "user_id"
   end
 
-  add_index "example_versions", ["example_id"], :name => "index_example_versions_on_example_id"
-
   create_table "examples", :force => true do |t|
     t.text     "body"
     t.integer  "function_id"
@@ -49,16 +44,14 @@ ActiveRecord::Schema.define(:version => 20110926024801) do
     t.integer  "user_id"
   end
 
-  add_index "examples", ["function_id"], :name => "function_id_idx"
-
   create_table "flat_comments_view", :id => false, :force => true do |t|
-    t.integer  "id",                             :default => 0,  :null => false
+    t.integer  "id",                             :default => 0, :null => false
     t.integer  "commentable_id",                 :default => 0
-    t.string   "commentable_type", :limit => 15, :default => ""
-    t.string   "title",                          :default => ""
+    t.string   "commentable_type", :limit => 15
+    t.string   "title"
     t.text     "body"
-    t.string   "subject",                        :default => ""
-    t.integer  "user_id",                        :default => 0,  :null => false
+    t.string   "subject"
+    t.integer  "user_id",                        :default => 0, :null => false
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
@@ -147,8 +140,6 @@ ActiveRecord::Schema.define(:version => 20110926024801) do
     t.integer  "namespace_id"
   end
 
-  add_index "functions", ["namespace_id"], :name => "namespace_id_idx"
-
   create_table "libraries", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -191,8 +182,6 @@ ActiveRecord::Schema.define(:version => 20110926024801) do
     t.integer  "library_id"
   end
 
-  add_index "namespaces", ["library_id"], :name => "library_id_idx"
-
   create_table "open_id_authentication_associations", :force => true do |t|
     t.integer "issued"
     t.integer "lifetime"
@@ -217,9 +206,6 @@ ActiveRecord::Schema.define(:version => 20110926024801) do
     t.datetime "updated_at"
   end
 
-  add_index "see_alsos", ["from_id"], :name => "from_id_idx"
-  add_index "see_alsos", ["to_id"], :name => "to_id_idx"
-
   create_table "users", :force => true do |t|
     t.string   "login"
     t.string   "email",                             :null => false
@@ -238,16 +224,12 @@ ActiveRecord::Schema.define(:version => 20110926024801) do
     t.string   "openid_identifier"
   end
 
-  add_index "users", ["openid_identifier"], :name => "index_users_on_openid_identifier"
-
   create_table "votes", :force => true do |t|
     t.boolean  "vote",                        :default => false
     t.datetime "created_at",                                     :null => false
-    t.string   "voteable_type", :limit => 15, :default => "",    :null => false
+    t.string   "voteable_type", :limit => 15,                    :null => false
     t.integer  "voteable_id",                 :default => 0,     :null => false
     t.integer  "user_id",                     :default => 0,     :null => false
   end
-
-  add_index "votes", ["user_id"], :name => "fk_votes_user"
 
 end
