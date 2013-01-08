@@ -20,12 +20,14 @@ GEM
       net-ssh-gateway (>= 1.0.0)
     chronic (0.2.3)
       hoe (>= 1.2.1)
+    coderay (1.0.8)
     flexmock (0.8.7)
     highline (1.6.1)
     hoe (2.6.2)
       rake (>= 0.8.7)
       rubyforge (>= 2.0.4)
     json_pure (1.4.6)
+    method_source (0.8.1)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -36,6 +38,10 @@ GEM
     newrelic_rpm (3.5.4.34)
     pg (0.14.1)
     pg_search (0.2.1)
+    pry (0.9.10)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
     rack (1.0.1)
     rack-openid (1.0.3)
       rack (>= 0.4)
@@ -56,6 +62,7 @@ GEM
       json_pure (>= 1.1.7)
     rubytree (0.7.0)
     shoulda (2.11.3)
+    slop (3.3.3)
     will_paginate (2.3.12)
 
 PLATFORMS
@@ -69,6 +76,7 @@ DEPENDENCIES
   newrelic_rpm
   pg
   pg_search
+  pry
   rack-openid (= 1.0.3)
   rails (= 2.3.5)
   rake (= 0.8.7)

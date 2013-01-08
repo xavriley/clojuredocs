@@ -15,6 +15,10 @@ gem 'will_paginate', '2.3.12'
 #gem 'levenshtein', '0.2.0'
 gem 'capistrano', '2.5.19'
 
+group :development do
+  gem 'pry'
+end
+
 group :production do
   gem 'newrelic_rpm'
 end

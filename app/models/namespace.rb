@@ -1,6 +1,6 @@
 class Namespace < ActiveRecord::Base
   belongs_to :library
-  has_many :functions
+  has_many :functions, :dependent => :delete_all
   
   #:nocov:
   #define_index do

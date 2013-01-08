@@ -88,16 +88,18 @@ class MainController < ApplicationController
 
 
     res = []
-    # for i in (0..q.size)
-    #   after = q[i,q.size]
-    #   before = q[0,i]
-    #   res << before + "?" + after
-    # end
+    for i in (0..q.size)
+      after = q[i,q.size]
+      before = q[0,i]
+      res << before + "_" + after
+    end
+    res << q
 
     qm = res.clone
     qm = qm.fill("?")
     
-    sql = "select * from functions where name LIKE " + qm.join(" or name LIKE ") + " LIMIT 100"
+    sql = "select * from functions where (name LIKE " + qm.join(" or name LIKE ") + ")
+          AND namespace_id = #{Namespace.find_by_name("overtone.core").id} LIMIT 100"
 
     begin
 
@@ -110,7 +112,7 @@ class MainController < ApplicationController
       @functions = []
     end
 
-    # if @functions.size <= 0
+    if @functions.size <= 0
     # 
     #   #Sphinx specific code
     #   #if not q.match("@library")
@@ -123,11 +125,11 @@ class MainController < ApplicationController
     #   
        @functions = @functions[0..24]
     # 
-    # end
+    end
 
-    @functions = @functions.find_all { |f|
-      f.library.current
-    }
+    # @functions = @functions.find_all { |f|
+    #   f.library.current
+    # }
 
     if params[:feeling_lucky] and @functions.size > 0
       func = @functions[0]

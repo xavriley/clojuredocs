@@ -21,9 +21,10 @@ class Function < ActiveRecord::Base
   
   acts_as_commentable
   
-  pg_search_scope :search, :against => {:name => 'A', :doc => 'B', :version => 'C'}, :using => :tsearch
-                    
-                    
+  pg_search_scope :search, :against => {:name => 'A', :doc => 'B', :version => 'C'}, :using => {
+                      :tsearch => {:prefix => true}
+                    }
+
   pg_search_scope :quick_search, :against => [:name], :using => {
                       :tsearch => {:prefix => true}
                     }
