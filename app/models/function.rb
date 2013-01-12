@@ -17,6 +17,8 @@ class Function < ActiveRecord::Base
     :foreign_key => "to_function_id",
     :association_foreign_key => "from_function_id"
     
+  has_and_belongs_to_many :categories
+    
   has_many :see_alsos, :foreign_key => "from_id"
   
   acts_as_commentable
