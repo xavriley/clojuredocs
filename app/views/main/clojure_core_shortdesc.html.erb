@@ -42,7 +42,7 @@
 		
 	</div>
 	<div class="grid_12">
-		<h2>Quick Ref for Clojure Core</h2>
+		<h2>Quick Ref for Overtone Core</h2>
 		<p>Adapted from Johannes Friestad's excellent <a href="http://faustus.webatu.com/clj-quick-ref.html">quick ref</a>.</p>
 		
 		<% @spheres.each do |s| %>
@@ -75,7 +75,7 @@
 									<tr class="var">
 										<td class="var">
 										  <% if sym[:link] and sym[:link] != "" %>
-										  <a href="/clojure_core/<%= sym[:ns]%>/<%= make_url_friendly(sym[:name])%>"><%= sym[:name]%></a>
+										  <a href="/overtone_core/<%= sym[:ns]%>/<%= make_url_friendly(sym[:name])%>"><%= sym[:name]%></a>
 											<% else %>
 												<%= sym[:name] %>
 											<% end %>

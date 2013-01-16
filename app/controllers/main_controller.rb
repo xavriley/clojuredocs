@@ -53,7 +53,7 @@ class MainController < ApplicationController
 
     @library = Library.find_by_name(params[:lib])
 
-    if @library and @library.name == "Clojure Core"
+    if @library and @library.name == "overtone"
       @spheres = CCQuickRef.spheres
       render :action => "clojure_core_shortdesc"
       return
@@ -66,7 +66,7 @@ class MainController < ApplicationController
   def quick_ref_vars_only
     @library = Library.find_by_name(params[:lib])
 
-    if @library and @library.name == "Clojure Core"
+    if @library and @library.name == "overtone"
       @spheres = CCQuickRef.spheres
       render :action => "clojure_core_vars_only"
       return
