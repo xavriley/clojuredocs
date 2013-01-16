@@ -75,7 +75,7 @@
 									<tr class="var">
 										<td class="var">
 										  <% if sym[:link] and sym[:link] != "" %>
-										  <a href="/overtone_core/<%= sym[:ns]%>/<%= make_url_friendly(sym[:name])%>"><%= sym[:name]%></a>
+										  <a href="/overtone/<%= sym[:ns]%>/<%= make_url_friendly(sym[:name])%>"><%= sym[:name]%></a>
 											<% else %>
 												<%= sym[:name] %>
 											<% end %>

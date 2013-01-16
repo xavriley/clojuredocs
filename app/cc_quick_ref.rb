@@ -3,27 +3,7 @@ class CCQuickRef
 		[
 			{
 				:name => "UGens",
-				:categories => [
-					{
-						:name => "UGens",
-						:groups => [
-							{
-								:name => "Arithmetic",
-								:symbols => [
-									{
-										:name => "=",
-										:ns => "clojure.core",
-										:link => "/v/1885",
-										:id => 1885
-									}
-                ]
-
-							}
-            ]
-
-					}
-        ]
-
+        :categories => Category.top_level_categories
 			}
     ]
 	end

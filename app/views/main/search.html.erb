@@ -73,64 +73,7 @@ $(document).ready(function() {
 	<div class="grid_4">
 		<div class="about_search">
 			<h3>Search Options</h3>
-			<p>There are several operators and modifiers you can use to improve your search results on ClojureDocs:</p>
-			<h4>Wildcards</h4>
-			<ul class="examples">
-				<li><a href="/search?x=0&y=0&q=str*"><span class="code">str*</span></a></li>
-				<li><a href="/search?x=0&y=0&q=*map"><span class="code">*map</span></a></li>
-			</ul>
-			
-			<h4>Field Operators</h4>
-			<p>
-				To specify the field to search in, prefix your search query with <span class="code">@field_name</span>.
-				Valid field operators are
-				<span class="code">@name</span>,
-				<span class="code">@ns</span>,
-				<span class="code">@library</span>, and
-				<span class="code">@doc</span>.
-			</p>
-			<ul class="examples">
-				<li><a href="/search?x=0&y=0&q=map+%40library+clojure+core"><span class="code">map @library clojure core</span></a></li>
-				<li><a href="/search?x=0&y=0&q=%40name+map+%40library+clojure+core"><span class="code">@name map @library clojure core</span></a></li>
-			</ul>
-			
-			<h4>Boolean Operators</h4>
-			<h5>AND</h5>
-			<ul class="examples">
-				<li><a href="/search?x=0&y=0&q=map+reduce"><span class="code">map reduce</span></a></li>
-				<li><a href="/search?x=0&y=0&q=map+%26+reduce"><span class="code">map &amp; reduce</span></a></li>
-			</ul>
-			
-			<h5>OR</h5>
-			<ul class="examples">
-				<li><a href="/search?x=0&y=0&q=map+|+reduce"><span class="code">map | reduce</span></a></li>
-			</ul>
-			
-			<h5>NOT</h5>
-			<ul class="examples">
-				<li><a href="/search?x=0&y=0&q=map+!reduce"><span class="code">map !reduce</span></a></li>
-			</ul>
-			
-			<h4>Phrase / Proximity Matching</h4>
-			<ul class="examples">
-				<li><a href="/search?x=0&y=0&q=&quot;predicate+function&quot;"><span class="code">&quot;predicate function&quot;</span></a></li>
-				<li><a href="/search?x=0&y=0&q=&quot;predicate+function&quot;~10"><span class="code">&quot;predicate function&quot;~10</span></a></li>
-			</ul>
-			
-			<h4>Field Start / End Modifiers</h4>
-			<ul class="examples">
-				<li><a href="/search?x=0&y=0&q=^string"><span class="code">^string</span></a></li>
-				<li><a href="/search?x=0&y=0&q=reduce$"><span class="code">reduce$</span></a></li>
-				<li><a href="/search?x=0&y=0&q=^map$"><span class="code">^map$</span></a></li>
-			</ul>
-			<h4>All Together Now</h4>
-			<ul class="examples">
-				<li><a href="/search?x=0&y=0&q=^map+%40library+&quot;clojure+core&quot;"><span class="code">^map @library "clojure core"</span></a></li>
-				<li><a href="/search?x=0&y=0&q=%40doc+(recur+|+loop)"><span class="code">@doc (recur | loop)</span></a></li>
-				<li><a href="/search?x=0&y=0&q=%40name+sel*+%40library+enlive"><span class="code">@name sel* @library enlive</span></a></li>
-			</ul>
-			
-			Please see <a href="http://www.sphinxsearch.com/docs/current.html#extended-syntax">this page</a> for a full listing of search options.
+			<p>Overtone docs uses the built in full-text search of Postgres. It searches in the name and doc string as you'd expect. It also looks for close spellings so it should handle any fat fingered typos you throw at it too.</p>
 		</div>
 	</div>
 </div>
