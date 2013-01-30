@@ -21,6 +21,7 @@ GEM
     chronic (0.2.3)
       hoe (>= 1.2.1)
     coderay (1.0.8)
+    dalli (1.0.5)
     flexmock (0.8.7)
     highline (1.6.1)
     hoe (2.6.2)
@@ -72,6 +73,7 @@ DEPENDENCIES
   ZenTest (= 4.4.0)
   capistrano (= 2.5.19)
   chronic (= 0.2.3)
+  dalli (~> 1.0.5)
   flexmock (= 0.8.7)
   newrelic_rpm
   pg

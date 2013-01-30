@@ -11,6 +11,7 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
 
   config.action_controller.perform_caching = true
+  config.gem 'dalli'
   
   ROOT_URL = ""
 end

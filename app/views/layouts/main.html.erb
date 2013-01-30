@@ -3,18 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Overtone Docs<%=h yield(:title) %></title>
-	<meta name="description" content="Documentation and examples for Clojure." />
+	<meta name="description" content="Documentation and examples for Overtone - a collaborative music programming language." />
 	<meta name="google-site-verification" content="XjzqkjEPtcgtLjhnqAvtnVSeveEccs-O_unFGGlbk4g" />
 	<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
-	<link rel="search" type="application/opensearchdescription+xml" title="ClojureDocs" href="/opensearch.xml">
+	<link rel="search" type="application/opensearchdescription+xml" title="OvertoneDocs" href="/opensearch.xml">
 	<%= stylesheet_link_tag 'reset.css',
 		'text.css',
 		'grid.css',
 		'common.css',
 		'main.css',
 		'shCore.css',
-		'shThemeDefault.css'#,
-		#:cache => 'cache-application' 
+		'shThemeDefault.css',
+		:cache => true
 		%>
 	<%= javascript_include_tag 'shCore.js', 
 		'shBrushClojure.js', 
@@ -24,8 +24,8 @@
 		'jquery.qtip.min.js',
 		'jquery.scrollTo-1.4.2-min.js',
 		'showdown.js',
-		'cd.js'#,
-		#:cache => 'cache-application' 
+		'cd.js',
+		:cache => true
 		%>
 
 	<script type="text/javascript" charset="utf-8">

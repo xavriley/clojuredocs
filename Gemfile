@@ -8,6 +8,7 @@ gem 'rack-openid', '1.0.3', :require => nil
 gem "pg"
 gem "pg_search"
 gem 'rubytree', '0.7.0'
+gem 'dalli', '~> 1.0.5'
 
 gem 'rdiscount', '1.6.5'
 gem 'chronic', '0.2.3'
