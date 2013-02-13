@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130203500) do
+ActiveRecord::Schema.define(:version => 20130213193847) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -141,24 +141,8 @@ ActiveRecord::Schema.define(:version => 20130130203500) do
     t.integer "to_function_id"
   end
 
-  create_table "functions", :force => true do |t|
-    t.string   "name"
-    t.string   "file"
-    t.string   "line"
-    t.string   "arglists_comp"
-    t.string   "added"
-    t.text     "doc"
-    t.text     "source"
-    t.integer  "weight",                          :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "shortdoc",          :limit => 70
-    t.string   "version"
-    t.string   "url_friendly_name"
-    t.integer  "namespace_id"
-  end
-
-  add_index "functions", ["namespace_id"], :name => "namespace_id_idx"
+# Could not dump table "functions" because of following StandardError
+#   Unknown type 'tsvector' for column 'search_vector'
 
   create_table "libraries", :force => true do |t|
     t.string   "name"

@@ -31,7 +31,12 @@ class Category < ActiveRecord::Base
   end
 
   def self.find_symbols(group)
-    group.functions.map {|fnc|
+    Function.find(:all, 
+                  :conditions => [
+                    "categories_functions.category_id = ? 
+                    AND functions.name NOT LIKE ? 
+                    AND functions.name NOT LIKE ?", group.id,"%:kr", "%:ar"], 
+                    :joins => :categories).map {|fnc|
       {
         :name => fnc.name,
         :ns => fnc.namespace.name,
