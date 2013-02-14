@@ -68,5 +68,8 @@ module ApplicationHelper
     out
   end
 
+  def format_overtone_doc(docstring)
+    "#{docstring.match(/^\n([^\n]+)\n/)[0].try(:strip)} - #{docstring.match(/\nRates: ([^\n]+)\n/)[0].try(:strip)}" rescue docstring
+  end
   
 end

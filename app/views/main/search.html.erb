@@ -53,13 +53,13 @@ $(document).ready(function() {
 				<%= link_to f.namespace.name, :controller => 'main', :action => 'ns', :lib => f.library.url_friendly_name, :ns => f.namespace.name %>
 			</span>
 		</h4>
-		<p class="doc"><%= f.doc %></p>
+		<p class="doc"><%= format_overtone_doc f.doc %></p>
 		<span class="extra_info">
 		<span class="examples_count">
 			<%= f.examples.size %> example<%= (f.examples.size != 1 ? "s" : "") %>
 		</span>
 		-
-		<span class="linktext">http://clojuredocs.org<%= f.href %></span>
+		<span class="linktext"><%= f.href %></span>
 		</span>
 		
 	</div>
