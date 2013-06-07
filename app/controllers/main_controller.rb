@@ -2,12 +2,12 @@ class MainController < ApplicationController
 
   layout 'main', :except => ["lib_search", "preview_example"]
   caches_page :index
-  caches_page :lib
-  caches_page :quick_ref_shortdesc
-  caches_page :quick_ref_vars_only
-  caches_page :libs
-  caches_page :function
-  caches_page :function_short_link
+  #caches_page :lib
+  #caches_page :quick_ref_shortdesc
+  #caches_page :quick_ref_vars_only
+  #caches_page :libs
+  #caches_page :function
+  #caches_page :function_short_link
 
 
   def index
