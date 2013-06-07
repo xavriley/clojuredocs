@@ -7,8 +7,12 @@ class ApplicationController < ActionController::Base
 
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
+  before_filter :default_library
 
   private
+  def default_library
+    @library = Library.find(:first, :conditions => {:current => true})
+  end
   
   def json_fail(message)
     return {:json => {:success => false, :message => message}}

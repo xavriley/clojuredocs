@@ -5,13 +5,13 @@ shared: &shared
   password: <%= ENV['DBPASS'] %>
 
 development:
-  database: clojuredocs_development
+  database: corelogicdocs_development
   <<: *shared
 
 test:
-  database: clojuredocs_test
+  database: corelogicdocs_test
   <<: *shared
 
 production:
-  database: clojuredocs_production
+  database: corelogicdocs_production
   <<: *shared

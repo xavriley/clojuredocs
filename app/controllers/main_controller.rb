@@ -106,8 +106,7 @@ class MainController < ApplicationController
     qm = res.clone
     qm = qm.fill("?")
     
-    sql = "select * from functions where (name LIKE " + qm.join(" or name LIKE ") + ")
-          AND namespace_id = #{Namespace.find_by_name("overtone.core").id} LIMIT 100"
+    sql = "select * from functions where (name LIKE " + qm.join(" or name LIKE ") + ") LIMIT 100"
 
     begin
 
@@ -225,7 +224,7 @@ class MainController < ApplicationController
                                                          :current => true}},
           :url_friendly_name => function_url_name})
       end
-          
+
       if not @function
         logger.error "Couldn't find function id #{params[:id]}"
 
